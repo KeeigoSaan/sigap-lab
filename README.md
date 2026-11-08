@@ -6,7 +6,12 @@
   <img src="https://img.shields.io/badge/Tailwind_CSS-3.x-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
   <img src="https://img.shields.io/badge/Database-MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white" alt="MySQL" />
   <img src="https://img.shields.io/badge/Style-Neobrutalism-FFE500?style=for-the-badge&logoColor=black" alt="Neobrutalism" />
+  <a href="http://sigab-lab.free.nf" target="_blank">
+    <img src="https://img.shields.io/badge/Live_Demo-sigab--lab.free.nf-3D5AFE?style=for-the-badge&logo=google-chrome&logoColor=white" alt="Live Demo" />
+  </a>
 </p>
+
+> 🌐 **Website Live Online (Dapat diakses langsung):** [http://sigab-lab.free.nf](http://sigab-lab.free.nf)
 
 ---
 

@@ -46,3 +46,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/aduan/{id}', [AduanController::class, 'show'])->name('aduan.show');
     Route::post('/aduan/{id}/tanggapan', [AduanController::class, 'storeTanggapan'])->name('aduan.tanggapan');
 });
+
+// Route penampil file storage (Khusus Hosting tanpa SSH / InfinityFree agar foto bukti langsung muncul)
+Route::get('/storage/{path}', function ($path) {
+    $fullPath = storage_path('app/public/' . $path);
+    if (!file_exists($fullPath)) {
+        abort(404);
+    }
+    return response()->file($fullPath);
+})->where('path', '.*');

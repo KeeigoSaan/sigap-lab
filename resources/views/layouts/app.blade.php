@@ -103,15 +103,26 @@
     <header class="bg-[#0A0A0A] text-white px-6 h-14 flex items-center justify-between sticky top-0 z-50 border-b-2 border-[#0A0A0A]">
         <div class="flex items-center gap-3">
             <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('siswa.dashboard') }}" class="flex items-center gap-3 decoration-0">
+                <img src="{{ asset('images/logo_smk5Solo.jpg') }}" alt="Logo SMKN 5 Surakarta" class="w-8 h-8 rounded border border-white/30 object-contain bg-white p-0.5">
                 <span class="bg-[#FFE500] text-[#0A0A0A] font-display text-sm px-2.5 py-1 border-2 border-[#FFE500] rounded-sm tracking-wide">
                     SIGAP-LAB
                 </span>
-                <span class="text-neutral-400 font-semibold text-xs tracking-wider uppercase">
+                <span class="text-neutral-400 font-semibold text-xs tracking-wider uppercase hidden sm:inline">
                     / {{ Auth::user()->role === 'admin' ? 'ADMIN / TEKNISI' : 'SISWA' }}
                 </span>
             </a>
         </div>
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 md:gap-4">
+            @if(Auth::user()->role === 'siswa')
+            <button 
+                type="button" 
+                onclick="document.getElementById('modal-panduan-global').classList.remove('hidden')" 
+                class="btn-neo btn-neo-yellow text-xs px-2.5 py-1.5 border-2 shadow-[2px_2px_0_#FFE500] hover:bg-white text-black transition-colors"
+                title="Panduan Cara Pakai Website"
+            >
+                💡 BANTUAN
+            </button>
+            @endif
             <span class="text-[#F5F3EE] text-xs md:text-sm font-semibold">
                 {{ Auth::user()->name }} @if(Auth::user()->kelas) · {{ Auth::user()->kelas }} @endif
             </span>
@@ -146,5 +157,11 @@
 
         @yield('content')
     </main>
+
+    @auth
+        @if(Auth::user()->role === 'siswa')
+            @include('components.modal-panduan', ['modalId' => 'modal-panduan-global'])
+        @endif
+    @endauth
 </body>
 </html>

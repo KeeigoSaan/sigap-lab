@@ -75,8 +75,8 @@ Ikuti langkah-langkah berikut untuk menjalankan project ini di komputer lokal (X
 
 ### 1. Clone Repositori
 ```bash
-git clone https://github.com/KeeigoSaan/Proyek-website-pengaduan-sarana-sekolah-lab-komputer-.git
-cd Proyek-website-pengaduan-sarana-sekolah-lab-komputer-
+git clone https://github.com/KeeigoSaan/sigap-lab.git
+cd sigap-lab
 ```
 
 ### 2. Pasang Dependensi Composer
@@ -147,7 +147,7 @@ php artisan test
 Proyek Akhir Web - Kejuruan Rekayasa Perangkat Lunak (RPL):
 - **Nama Peserta Didik:** KEIGO AVREL PURNOMO
 - **Kelas:** XII RPL A
-- **Sekolah:** SMK Negeri 5 Solo
+- **Sekolah:** SMK Negeri 5 Surakarta
 
 ---
 

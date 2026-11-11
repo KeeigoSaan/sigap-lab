@@ -5,9 +5,12 @@
     <div class="w-full max-w-md">
         <!-- Logo / Wordmark -->
         <div class="text-center mb-6">
+            <div class="flex justify-center mb-3">
+                <img src="{{ asset('images/logo_smk5Solo.jpg') }}" alt="Logo SMKN 5 Surakarta" class="w-20 h-20 object-contain rounded-md border-[3px] border-[#0A0A0A] bg-white p-1 shadow-[4px_4px_0_#0A0A0A]">
+            </div>
             <div class="inline-block bg-[#FFE500] border-[3px] border-[#0A0A0A] px-4 py-1.5 mb-2 shadow-[3px_3px_0_#0A0A0A]">
-                <span class="font-display text-[11px] tracking-[0.2em] text-[#0A0A0A]">
-                    SMK NEGERI 5
+                <span class="font-display text-[11px] tracking-[0.15em] text-[#0A0A0A]">
+                    SMK NEGERI 5 SURAKARTA
                 </span>
             </div>
             <h1 class="font-display text-4xl leading-none tracking-tight text-[#0A0A0A] block">
@@ -121,10 +124,13 @@
                 </button>
             </form>
 
-            <div class="mt-4 pt-3 border-t border-neutral-200 text-center">
-                <a href="{{ route('login') }}" class="text-xs font-bold text-neutral-600 hover:text-black underline">
+            <div class="mt-4 pt-3 border-t border-neutral-200 text-center space-y-2">
+                <a href="{{ route('login') }}" class="block text-xs font-bold text-neutral-600 hover:text-black underline">
                     ← Sudah punya akun? Kembali ke Halaman Login
                 </a>
+                <button type="button" onclick="document.getElementById('modal-panduan-register').classList.remove('hidden')" class="btn-neo btn-neo-lime w-full py-2 text-xs shadow-[2px_2px_0_#0A0A0A]">
+                    💡 CARA PAKAI & BANTUAN AKTIVASI
+                </button>
             </div>
         </div>
 
@@ -139,4 +145,7 @@
         </div>
     </div>
 </div>
+
+<!-- Modal Panduan Siswa -->
+@include('components.modal-panduan', ['modalId' => 'modal-panduan-register'])
 @endsection

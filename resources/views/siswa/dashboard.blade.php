@@ -12,7 +12,14 @@
                 Pantau status aduan kerusakan perangkat lab yang kamu laporkan
             </p>
         </div>
-        <div>
+        <div class="flex flex-wrap items-center gap-3">
+            <button 
+                type="button" 
+                onclick="document.getElementById('modal-panduan-global').classList.remove('hidden')" 
+                class="btn-neo btn-neo-white px-4 py-3 text-xs md:text-sm shadow-[4px_4px_0_#0A0A0A] hover:bg-[#FFE500]"
+            >
+                💡 CARA PAKAI & BANTUAN
+            </button>
             <a href="{{ route('siswa.aduan.create') }}" class="btn-neo btn-neo-yellow px-5 py-3 text-xs md:text-sm shadow-[4px_4px_0_#0A0A0A]">
                 + BUAT ADUAN BARU
             </a>

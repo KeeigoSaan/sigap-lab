@@ -24,7 +24,7 @@ class AduanController extends Controller
             $query->where(function ($sub) use ($q) {
                 $sub->where('judul', 'like', "%{$q}%")
                     ->orWhere('kode_aduan', 'like', "%{$q}%")
-                    ->orWhereHas('perangkat', fn($p) => $p->where('kode_perangkat', 'like', "%{$q}%"));
+                    ->orWhereHas('perangkat', fn($p) => $p->where('kode_perangkat', 'like', "%{$q}%")->orWhere('lokasi', 'like', "%{$q}%"));
             });
         }
 
@@ -46,7 +46,11 @@ class AduanController extends Controller
 
     public function create()
     {
-        $perangkatList = Perangkat::orderBy('kode_perangkat')->get();
+        if (Perangkat::where('lokasi', 'Lab RPL 1')->doesntExist()) {
+            Perangkat::seedDefaultLabs();
+        }
+
+        $perangkatList = Perangkat::orderBy('lokasi')->orderBy('kode_perangkat')->get();
         $kategoriList  = KategoriKerusakan::all();
 
         return view('siswa.create', compact('perangkatList', 'kategoriList'));
@@ -107,7 +111,7 @@ class AduanController extends Controller
                 $sub->where('judul', 'like', "%{$q}%")
                     ->orWhere('kode_aduan', 'like', "%{$q}%")
                     ->orWhereHas('user', fn($u) => $u->where('name', 'like', "%{$q}%")->orWhere('kelas', 'like', "%{$q}%"))
-                    ->orWhereHas('perangkat', fn($p) => $p->where('kode_perangkat', 'like', "%{$q}%"));
+                    ->orWhereHas('perangkat', fn($p) => $p->where('kode_perangkat', 'like', "%{$q}%")->orWhere('lokasi', 'like', "%{$q}%"));
             });
         }
 

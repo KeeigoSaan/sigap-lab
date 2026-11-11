@@ -4,10 +4,13 @@
 <div class="min-h-screen flex items-center justify-center p-4 bg-[#F5F3EE]">
     <div class="w-full max-w-sm">
         <!-- Logo / Wordmark -->
-        <div class="text-center mb-8">
+        <div class="text-center mb-6">
+            <div class="flex justify-center mb-3">
+                <img src="{{ asset('images/logo_smk5Solo.jpg') }}" alt="Logo SMKN 5 Surakarta" class="w-20 h-20 object-contain rounded-md border-[3px] border-[#0A0A0A] bg-white p-1 shadow-[4px_4px_0_#0A0A0A]">
+            </div>
             <div class="inline-block bg-[#FFE500] border-[3px] border-[#0A0A0A] px-4 py-1.5 mb-2 shadow-[3px_3px_0_#0A0A0A]">
-                <span class="font-display text-[11px] tracking-[0.2em] text-[#0A0A0A]">
-                    SMK NEGERI 5
+                <span class="font-display text-[11px] tracking-[0.15em] text-[#0A0A0A]">
+                    SMK NEGERI 5 SURAKARTA
                 </span>
             </div>
             <h1 class="font-display text-5xl leading-none tracking-tight text-[#0A0A0A] block">
@@ -76,14 +79,17 @@
                 </button>
             </form>
 
-            <!-- Link Registrasi Siswa -->
-            <div class="mt-6 pt-4 border-t-2 border-neutral-200 text-center">
-                <p class="text-xs font-semibold text-neutral-600 mb-2">
+            <!-- Link Registrasi Siswa & Panduan -->
+            <div class="mt-6 pt-4 border-t-2 border-neutral-200 text-center space-y-2">
+                <p class="text-xs font-semibold text-neutral-600">
                     Siswa belum punya akun?
                 </p>
                 <a href="{{ route('register') }}" class="btn-neo btn-neo-white w-full py-2.5 text-xs shadow-[2px_2px_0_#0A0A0A] hover:bg-[#FFE500]">
                     ✨ DAFTAR AKUN SISWA DENGAN NIS →
                 </a>
+                <button type="button" onclick="document.getElementById('modal-lupa-password').classList.remove('hidden')" class="btn-neo btn-neo-lime w-full py-2 text-xs shadow-[2px_2px_0_#0A0A0A]">
+                    💡 CARA PAKAI & BANTUAN SISWA
+                </button>
             </div>
         </div>
 
@@ -106,71 +112,6 @@
     </div>
 </div>
 
-<!-- Modal Bantuan Lupa Password (Neobrutalism Style) -->
-<div id="modal-lupa-password" class="hidden fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4">
-    <div class="neo-box p-6 bg-white max-w-sm w-full relative shadow-[8px_8px_0_#0A0A0A]">
-        <button 
-            type="button" 
-            onclick="document.getElementById('modal-lupa-password').classList.add('hidden')" 
-            class="absolute top-4 right-4 font-black text-sm bg-[#F5F3EE] border-2 border-black w-7 h-7 flex items-center justify-center hover:bg-[#FF3EA5] hover:text-white transition-colors cursor-pointer"
-        >
-            ✕
-        </button>
-
-        <div class="inline-block bg-[#FFE500] border-2 border-black px-2.5 py-0.5 text-[10px] font-display uppercase tracking-wider mb-2 shadow-[2px_2px_0_#0A0A0A]">
-            BANTUAN SISWA
-        </div>
-
-        <h3 class="font-display text-lg text-[#0A0A0A] mb-2 uppercase">
-            LUPA PASSWORD?
-        </h3>
-
-        <p class="text-xs text-neutral-600 font-medium leading-relaxed mb-4">
-            Akun siswa dibuat dan dikelola oleh pengelola Laboratorium Komputer SMK. Jika kamu lupa password, silakan hubungi langsung teknisi lab untuk reset:
-        </p>
-
-        <!-- Kontak Box -->
-        <div class="bg-[#F5F3EE] border-2 border-black p-3.5 mb-5 space-y-2 text-xs">
-            <div class="flex items-center gap-2">
-                <span class="text-sm">👨‍🏫</span>
-                <div>
-                    <span class="text-[10px] text-neutral-500 uppercase font-display block">KOORDINATOR LAB:</span>
-                    <strong class="text-black">Pak Budi (Teknisi)</strong>
-                </div>
-            </div>
-            <div class="flex items-center gap-2">
-                <span class="text-sm">📍</span>
-                <div>
-                    <span class="text-[10px] text-neutral-500 uppercase font-display block">LOKASI:</span>
-                    <span class="text-neutral-800 font-semibold">Ruang Lab Komputer 1</span>
-                </div>
-            </div>
-            <div class="flex items-center gap-2">
-                <span class="text-sm">📱</span>
-                <div>
-                    <span class="text-[10px] text-neutral-500 uppercase font-display block">WHATSAPP:</span>
-                    <span class="font-mono font-bold text-black">0812-3456-7890</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tombol Aksi -->
-        <div class="flex flex-col gap-2">
-            <a 
-                href="https://wa.me/6281234567890?text=Halo%20Pak%20Budi,%20saya%20siswa%20lupa%20password%20akun%20SIGAP-LAB.%20Bisa%20bantu%20reset?" 
-                target="_blank"
-                class="btn-neo btn-neo-lime w-full py-2.5 text-xs text-center shadow-[3px_3px_0_#0A0A0A]"
-            >
-                💬 CHAT PAK BUDI VIA WHATSAPP →
-            </a>
-            <button 
-                type="button" 
-                onclick="document.getElementById('modal-lupa-password').classList.add('hidden')"
-                class="btn-neo btn-neo-white w-full py-2 text-xs text-center shadow-[2px_2px_0_#0A0A0A]"
-            >
-                TUTUP
-            </button>
-        </div>
-    </div>
-</div>
+<!-- Modal Panduan & Bantuan Lupa Password -->
+@include('components.modal-panduan', ['modalId' => 'modal-lupa-password'])
 @endsection

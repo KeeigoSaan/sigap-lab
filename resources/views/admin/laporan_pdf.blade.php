@@ -123,15 +123,26 @@
     </div>
     @endif
 
+    @php
+        $logoPath = request('download') === 'pdf' 
+            ? public_path('images/logo_smk5Solo.jpg') 
+            : asset('images/logo_smk5Solo.jpg');
+    @endphp
+
     <!-- KOP SURAT RESMI -->
     <table class="kop-table">
         <tr>
-            <td class="kop-header">
-                <h3>PEMERINTAH DAERAH PROVINSI</h3>
-                <h2>SMK NEGERI 5 JAKARTA</h2>
-                <h3>UNIT LABORATORIUM KOMPUTER & INFORMATIKA</h3>
-                <p>Jl. Pisangan Timur Tujuh, Pulo Gadung, Jakarta Timur | Telp: (021) 4720245 | Website: smkn5jkt.sch.id</p>
+            <td style="width: 80px; text-align: center; vertical-align: middle;">
+                <img src="{{ $logoPath }}" alt="Logo SMKN 5 Surakarta" style="width: 70px; height: 70px; object-fit: contain;">
             </td>
+            <td class="kop-header">
+                <h3 style="font-size: 12px; margin: 0; font-weight: normal; letter-spacing: 1px;">PEMERINTAH PROVINSI JAWA TENGAH</h3>
+                <h3 style="font-size: 12px; margin: 2px 0; font-weight: normal; letter-spacing: 1px;">DINAS PENDIDIKAN DAN KEBUDAYAAN</h3>
+                <h2>SMK NEGERI 5 SURAKARTA</h2>
+                <h3 style="font-size: 12px; margin: 2px 0; font-weight: bold;">UNIT LABORATORIUM KOMPUTER & INFORMATIKA</h3>
+                <p>Jl. Ring Road Mojosongo, Jebres, Kota Surakarta, Jawa Tengah 57127 | Website: smkn5solo.sch.id</p>
+            </td>
+            <td style="width: 80px;"></td>
         </tr>
     </table>
 
@@ -199,10 +210,10 @@
     <!-- TANDA TANGAN KOORDINATOR -->
     <div class="ttd-container">
         <div class="ttd-box">
-            <p style="margin: 0;">Jakarta, {{ date('d F Y') }}</p>
+            <p style="margin: 0;">Surakarta, {{ date('d F Y') }}</p>
             <p style="margin: 4px 0 60px 0;">Koordinator Lab Komputer,</p>
-            <p style="margin: 0; font-weight: bold; text-decoration: underline;">Pak Budi, S.Kom.</p>
-            <p style="margin: 2px 0 0 0; color: #555;">NIP. 19850312 201101 1 008</p>
+            <p style="margin: 0; font-weight: bold; text-decoration: underline;">Keigo Avrel Purnomo</p>
+            <p style="margin: 2px 0 0 0; color: #555;">Teknisi & Pengelola Lab</p>
         </div>
         <div style="clear: both;"></div>
     </div>

@@ -54,6 +54,7 @@
 
             <!-- Grid: Kategori & Perangkat -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Kategori Kerusakan -->
                 <div>
                     <label class="block font-display text-xs tracking-wider uppercase mb-1.5 text-[#0A0A0A]">
                         KATEGORI KERUSAKAN <span class="text-red-500">*</span>
@@ -72,23 +73,54 @@
                     </select>
                 </div>
 
+                <!-- Pilihan Ruang Lab -->
                 <div>
                     <label class="block font-display text-xs tracking-wider uppercase mb-1.5 text-[#0A0A0A]">
-                        PERANGKAT KOMPUTER <span class="text-red-500">*</span>
+                        PILIH RUANG LAB <span class="text-red-500">*</span>
                     </label>
                     <select 
-                        name="perangkat_id" 
-                        required
+                        id="select-lab"
                         class="w-full bg-[#F5F3EE] border-[3px] border-[#0A0A0A] p-3 font-bold text-sm text-[#0A0A0A] focus:outline-none focus:bg-white transition-colors cursor-pointer"
+                        onchange="filterLab(this.value)"
                     >
-                        <option value="">-- Pilih Komputer / Perangkat --</option>
-                        @foreach($perangkatList as $p)
-                            <option value="{{ $p->id }}" {{ old('perangkat_id') == $p->id ? 'selected' : '' }}>
-                                {{ $p->kode_perangkat }} - {{ $p->nama_perangkat }}
-                            </option>
+                        <option value="">-- Semua Ruang Lab --</option>
+                        @php
+                            $uniqueLabs = $perangkatList->pluck('lokasi')->unique();
+                        @endphp
+                        @foreach($uniqueLabs as $lab)
+                            <option value="{{ $lab }}">🏢 {{ $lab }}</option>
                         @endforeach
                     </select>
                 </div>
+            </div>
+
+            <!-- Pilih Perangkat / Nomor Komputer -->
+            <div>
+                <div class="flex justify-between items-center mb-1.5">
+                    <label class="font-display text-xs tracking-wider uppercase text-[#0A0A0A]">
+                        PERANGKAT / NOMOR KOMPUTER <span class="text-red-500">*</span>
+                    </label>
+                    <span id="perangkat-count" class="text-[10px] font-bold text-neutral-500">
+                        {{ $perangkatList->count() }} unit terdaftar
+                    </span>
+                </div>
+                <select 
+                    name="perangkat_id" 
+                    id="select-perangkat"
+                    required
+                    class="w-full bg-[#F5F3EE] border-[3px] border-[#0A0A0A] p-3 font-bold text-sm text-[#0A0A0A] focus:outline-none focus:bg-white transition-colors cursor-pointer"
+                >
+                    <option value="">-- Pilih Nomor Komputer / Perangkat --</option>
+                    @foreach($perangkatList->groupBy('lokasi') as $lokasi => $items)
+                        <optgroup label="🏢 {{ strtoupper($lokasi) }} ({{ $items->count() }} UNIT)" data-lab="{{ $lokasi }}">
+                            @foreach($items as $p)
+                                <option value="{{ $p->id }}" data-lab="{{ $p->lokasi }}" {{ old('perangkat_id') == $p->id ? 'selected' : '' }}>
+                                    {{ $p->kode_perangkat }} - {{ $p->nama_perangkat }} ({{ $p->lokasi }})
+                                </option>
+                            @endforeach
+                        </optgroup>
+                    @endforeach
+                </select>
             </div>
 
             <!-- Deskripsi -->
@@ -137,4 +169,50 @@
         </form>
     </div>
 </div>
+
+<script>
+    function filterLab(selectedLab) {
+        const selectPerangkat = document.getElementById('select-perangkat');
+        const optgroups = selectPerangkat.querySelectorAll('optgroup');
+        let totalVisible = 0;
+
+        optgroups.forEach(group => {
+            const labName = group.getAttribute('data-lab');
+            if (!selectedLab || labName === selectedLab) {
+                group.style.display = '';
+                const options = group.querySelectorAll('option');
+                options.forEach(opt => opt.disabled = false);
+                totalVisible += options.length;
+            } else {
+                group.style.display = 'none';
+                group.querySelectorAll('option').forEach(opt => opt.disabled = true);
+            }
+        });
+
+        const currentOpt = selectPerangkat.options[selectPerangkat.selectedIndex];
+        if (currentOpt && currentOpt.value && selectedLab && currentOpt.getAttribute('data-lab') !== selectedLab) {
+            selectPerangkat.value = '';
+        }
+
+        const countLabel = document.getElementById('perangkat-count');
+        if (countLabel) {
+            countLabel.textContent = totalVisible + ' unit tersedia' + (selectedLab ? ' di ' + selectedLab : '');
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const selectPerangkat = document.getElementById('select-perangkat');
+        const selectedOpt = selectPerangkat.options[selectPerangkat.selectedIndex];
+        if (selectedOpt && selectedOpt.value) {
+            const lab = selectedOpt.getAttribute('data-lab');
+            if (lab) {
+                const selectLab = document.getElementById('select-lab');
+                if (selectLab) {
+                    selectLab.value = lab;
+                    filterLab(lab);
+                }
+            }
+        }
+    });
+</script>
 @endsection

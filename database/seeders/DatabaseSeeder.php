@@ -17,12 +17,12 @@ class DatabaseSeeder extends Seeder
     {
         // 1. User Admin
         $admin = User::create([
-            'name'     => 'Pak Budi (Teknisi)',
+            'name'     => 'Keigo Avrel Purnomo (Teknisi)',
             'email'    => 'admin@smk.sch.id',
             'password' => Hash::make('admin123'),
             'role'     => 'admin',
             'kelas'    => 'Koordinator Lab',
-            'no_telp'  => '081234567890',
+            'no_telp'  => '081226609314',
         ]);
 
         // 2. Data Master Siswa Sekolah (Dari TU / Akun Belajar)
@@ -74,31 +74,8 @@ class DatabaseSeeder extends Seeder
         $katJaringan = KategoriKerusakan::create(['nama_kategori' => 'Jaringan', 'deskripsi' => 'Kabel LAN lepas, tidak dapat IP, internet lambat/putus.']);
         $katLainnya  = KategoriKerusakan::create(['nama_kategori' => 'Lainnya', 'deskripsi' => 'Keluhan fasilitas meja, kursi, stopkontak, listrik.']);
 
-        // 4. Perangkat Lab
-        $perangkats = [];
-        for ($i = 1; $i <= 24; $i++) {
-            $kode = 'PC-' . str_pad($i, 2, '0', STR_PAD_LEFT);
-            $perangkats[$kode] = Perangkat::create([
-                'kode_perangkat' => $kode,
-                'nama_perangkat' => 'Komputer ' . $kode,
-                'lokasi'         => 'Lab Komputer 1',
-                'status'         => 'baik',
-            ]);
-        }
-
-        $perangkats['PRINTER-01'] = Perangkat::create([
-            'kode_perangkat' => 'PRINTER-01',
-            'nama_perangkat' => 'Printer Epson L3110',
-            'lokasi'         => 'Lab Komputer 1',
-            'status'         => 'baik',
-        ]);
-
-        $perangkats['PROYEKTOR-01'] = Perangkat::create([
-            'kode_perangkat' => 'PROYEKTOR-01',
-            'nama_perangkat' => 'Proyektor BenQ',
-            'lokasi'         => 'Lab Komputer 1',
-            'status'         => 'baik',
-        ]);
+        // 4. Perangkat Lab Seluruh SMKN 5 Surakarta (Lab RPL 1, 3, 4 & Lab ASM 1, 2, 3 masing-masing 40 PC)
+        Perangkat::seedDefaultLabs();
 
         // 5. Data Aduan dikosongkan agar pengguna dapat menginput aduan asli dengan foto bukti
     }

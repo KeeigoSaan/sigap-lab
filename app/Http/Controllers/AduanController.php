@@ -103,6 +103,16 @@ class AduanController extends Controller
 
     public function adminDashboard(Request $request)
     {
+        // Auto update nama admin jika di database hosting masih tertulis Pak Budi
+        $currentUser = Auth::user();
+        if ($currentUser && str_contains($currentUser->name, 'Budi')) {
+            $currentUser->update([
+                'name'    => 'Keigo Avrel Purnomo (Teknisi)',
+                'no_telp' => '081226609314',
+            ]);
+            $currentUser->name = 'Keigo Avrel Purnomo (Teknisi)';
+        }
+
         $query = Aduan::with(['user', 'perangkat', 'kategori'])->latest();
 
         if ($request->filled('q')) {

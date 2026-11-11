@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Laporan Rekapitulasi Kerusakan Lab Komputer</title>
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/logo_smk5Solo.jpg') }}">
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;

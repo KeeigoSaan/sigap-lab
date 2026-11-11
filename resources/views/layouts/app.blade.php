@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? 'SIGAP-LAB' }} - Sistem Aduan Lab Komputer</title>
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
-    <link rel="alternate icon" href="{{ asset('favicon.svg') }}">
+    <link rel="icon" type="image/jpeg" href="{{ asset('images/logo_smk5Solo.jpg') }}">
+    <link rel="shortcut icon" href="{{ asset('images/logo_smk5Solo.jpg') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/logo_smk5Solo.jpg') }}">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

@@ -45,6 +45,12 @@ class AuthController extends Controller
             $request->session()->regenerate();
 
             if (Auth::user()->role === 'admin') {
+                if (str_contains(Auth::user()->name, 'Budi')) {
+                    Auth::user()->update([
+                        'name'    => 'Keigo Avrel Purnomo (Teknisi)',
+                        'no_telp' => '081226609314',
+                    ]);
+                }
                 return redirect()->intended(route('admin.dashboard'));
             }
 

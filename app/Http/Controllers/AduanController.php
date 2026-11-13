@@ -46,11 +46,18 @@ class AduanController extends Controller
 
     public function create()
     {
+        // Bersihkan sisa data lama Lab Komputer jika ada di database
+        Perangkat::whereIn('lokasi', ['Lab Komputer', 'Lab Komputer 1'])->delete();
+
         if (Perangkat::where('lokasi', 'Lab RPL 1')->doesntExist()) {
             Perangkat::seedDefaultLabs();
         }
 
-        $perangkatList = Perangkat::orderBy('lokasi')->orderBy('kode_perangkat')->get();
+        // Pastikan hanya lab resmi SMKN 5 Surakarta yang tampil
+        $perangkatList = Perangkat::whereNotIn('lokasi', ['Lab Komputer', 'Lab Komputer 1'])
+            ->orderBy('lokasi')
+            ->orderBy('kode_perangkat')
+            ->get();
         $kategoriList  = KategoriKerusakan::all();
 
         return view('siswa.create', compact('perangkatList', 'kategoriList'));

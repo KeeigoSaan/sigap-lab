@@ -44,9 +44,22 @@ class AuthController extends Controller
         if ($authAttempt) {
             $request->session()->regenerate();
 
-            if (Auth::user()->role === 'admin') {
-                if (str_contains(Auth::user()->name, 'Budi')) {
-                    Auth::user()->update([
+                        $u = Auth::user();
+            // Auto konversi kelas angka ke huruf hanya untuk RPL
+            if ($u->kelas) {
+                $convertedKelas = str_replace(
+                    ['RPL 1', 'RPL 2', 'RPL 3', 'RPL 4', 'TKJ 1', 'TKJ 2', 'TKJ 2', 'DKV B', 'DKV A'],
+                    ['RPL A', 'RPL B', 'RPL C', 'RPL D', 'RPL A', 'RPL B', 'RPL B', 'RPL B', 'RPL A'],
+                    $u->kelas
+                );
+                if ($convertedKelas !== $u->kelas) {
+                    $u->update(['kelas' => $convertedKelas]);
+                }
+            }
+
+            if ($u->role === 'admin') {
+                if (str_contains($u->name, 'Budi')) {
+                    $u->update([
                         'name'    => 'Keigo Avrel Purnomo (Teknisi)',
                         'no_telp' => '081226609314',
                     ]);

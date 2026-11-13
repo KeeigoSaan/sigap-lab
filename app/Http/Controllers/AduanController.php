@@ -103,7 +103,7 @@ class AduanController extends Controller
 
     public function adminDashboard(Request $request)
     {
-        // Auto update nama admin jika di database hosting masih tertulis Pak Budi
+                // Auto update nama admin jika di database hosting masih tertulis Pak Budi
         $currentUser = Auth::user();
         if ($currentUser && str_contains($currentUser->name, 'Budi')) {
             $currentUser->update([
@@ -111,6 +111,17 @@ class AduanController extends Controller
                 'no_telp' => '081226609314',
             ]);
             $currentUser->name = 'Keigo Avrel Purnomo (Teknisi)';
+        }
+        if ($currentUser && $currentUser->kelas) {
+            $converted = str_replace(
+                ['RPL 1', 'RPL 2', 'RPL 3', 'RPL 4', 'TKJ 1', 'TKJ 2', 'DKV B', 'DKV A'],
+                ['RPL A', 'RPL B', 'RPL C', 'RPL D', 'RPL A', 'RPL B', 'RPL B', 'RPL A'],
+                $currentUser->kelas
+            );
+            if ($converted !== $currentUser->kelas) {
+                $currentUser->update(['kelas' => $converted]);
+                $currentUser->kelas = $converted;
+            }
         }
 
         $query = Aduan::with(['user', 'perangkat', 'kategori'])->latest();

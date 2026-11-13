@@ -30,25 +30,25 @@ class DatabaseSeeder extends Seeder
             [
                 'nis'           => '10245',
                 'nama'          => 'Keigo Avrel Purnomo',
-                'kelas'         => 'XII RPL 2',
+                'kelas'         => 'XII RPL B',
                 'email_belajar' => 'keigo@smk.belajar.id',
             ],
             [
                 'nis'           => '10246',
                 'nama'          => 'Siti Nuraini',
-                'kelas'         => 'XII RPL 2',
+                'kelas'         => 'XII RPL B',
                 'email_belajar' => 'siti.nuraini@smk.belajar.id',
             ],
             [
                 'nis'           => '10247',
                 'nama'          => 'Rafi Aditya',
-                'kelas'         => 'XI RPL 1',
+                'kelas'         => 'XI RPL A',
                 'email_belajar' => 'rafi.aditya@smk.belajar.id',
             ],
             [
                 'nis'           => '10248',
                 'nama'          => 'Dwi Cahyono',
-                'kelas'         => 'XI TKJ 2',
+                'kelas'         => 'XI RPL B',
                 'email_belajar' => 'dwi.cahyono@smk.belajar.id',
             ],
         ];
@@ -64,7 +64,7 @@ class DatabaseSeeder extends Seeder
             'email'    => 'keigo@smk.belajar.id',
             'password' => Hash::make('siswa123'),
             'role'     => 'siswa',
-            'kelas'    => 'XII RPL 2',
+            'kelas'    => 'XII RPL B',
             'no_telp'  => '089876543210',
         ]);
 

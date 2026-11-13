@@ -101,35 +101,35 @@
 <body class="min-h-screen flex flex-col">
     @auth
     <!-- Global Header -->
-    <header class="bg-[#0A0A0A] text-white px-6 h-14 flex items-center justify-between sticky top-0 z-50 border-b-2 border-[#0A0A0A]">
-        <div class="flex items-center gap-3">
-            <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('siswa.dashboard') }}" class="flex items-center gap-3 decoration-0">
-                <img src="{{ asset('images/logo_smk5Solo.jpg') }}" alt="Logo SMKN 5 Surakarta" class="w-8 h-8 rounded border border-white/30 object-contain bg-white p-0.5">
-                <span class="bg-[#FFE500] text-[#0A0A0A] font-display text-sm px-2.5 py-1 border-2 border-[#FFE500] rounded-sm tracking-wide">
+        <header class="bg-[#0A0A0A] text-white px-3 sm:px-6 h-14 flex items-center justify-between sticky top-0 z-50 border-b-2 border-[#0A0A0A]">
+        <!-- Brand / Logo -->
+        <div class="flex items-center gap-2 sm:gap-3 shrink-0">
+            <a href="{{ Auth::user()->role === 'admin' ? route('admin.dashboard') : route('siswa.dashboard') }}" class="flex items-center gap-2 sm:gap-3 decoration-0">
+                <img src="{{ asset('images/logo_smk5Solo.jpg') }}" alt="Logo SMKN 5 Surakarta" class="w-7 h-7 sm:w-8 sm:h-8 rounded border border-white/30 object-contain bg-white p-0.5 shrink-0">
+                <span class="bg-[#FFE500] text-[#0A0A0A] font-display text-xs sm:text-sm px-2 py-0.5 sm:px-2.5 sm:py-1 border-2 border-[#FFE500] rounded-sm tracking-wide shrink-0">
                     SIGAP-LAB
                 </span>
-                <span class="text-neutral-400 font-semibold text-xs tracking-wider uppercase hidden sm:inline">
+                <span class="text-neutral-400 font-semibold text-xs tracking-wider uppercase hidden md:inline">
                     / {{ Auth::user()->role === 'admin' ? 'ADMIN / TEKNISI' : 'SISWA' }}
                 </span>
             </a>
         </div>
-        <div class="flex items-center gap-2 md:gap-4">
-            @if(Auth::user()->role === 'siswa')
-            <button 
-                type="button" 
-                onclick="document.getElementById('modal-panduan-global').classList.remove('hidden')" 
-                class="btn-neo btn-neo-yellow text-xs px-2.5 py-1.5 border-2 shadow-[2px_2px_0_#FFE500] hover:bg-white text-black transition-colors"
-                title="Panduan Cara Pakai Website"
-            >
-                💡 BANTUAN
-            </button>
-            @endif
-            <span class="text-[#F5F3EE] text-xs md:text-sm font-semibold">
-                {{ Auth::user()->name }} @if(Auth::user()->kelas) · {{ Auth::user()->kelas }} @endif
-            </span>
-            <form action="{{ route('logout') }}" method="POST" class="inline">
+
+        <!-- User Info & Keluar -->
+        <div class="flex items-center gap-2 sm:gap-3 min-w-0 justify-end">
+            <div class="text-right min-w-0">
+                <span class="text-[#F5F3EE] text-[11px] sm:text-xs md:text-sm font-bold block truncate max-w-[130px] sm:max-w-[200px] md:max-w-none">
+                    {{ Auth::user()->name }}
+                </span>
+                @if(Auth::user()->kelas)
+                <span class="text-neutral-400 text-[9px] sm:text-[10px] md:text-xs block font-semibold truncate">
+                    {{ Auth::user()->kelas }}
+                </span>
+                @endif
+            </div>
+            <form action="{{ route('logout') }}" method="POST" class="inline shrink-0">
                 @csrf
-                <button type="submit" class="btn-neo btn-neo-white text-xs px-3 py-1.5 border-2 shadow-[2px_2px_0_#FFE500] bg-transparent text-[#F5F3EE] hover:bg-[#FFE500] hover:text-[#0A0A0A] transition-colors">
+                <button type="submit" class="btn-neo btn-neo-white text-[10px] sm:text-xs px-2.5 py-1 sm:px-3 sm:py-1.5 border-2 shadow-[2px_2px_0_#FFE500] bg-transparent text-[#F5F3EE] hover:bg-[#FFE500] hover:text-[#0A0A0A] transition-colors">
                     KELUAR
                 </button>
             </form>

@@ -91,7 +91,7 @@
                             Keigo Avrel Purnomo (Teknisi Lab)
                         </h5>
                         <p class="text-[11px] text-neutral-600 font-semibold">
-                            📍 Ruang Lab Komputer 1 (SMKN 5 Surakarta) · 📱 WhatsApp: <strong>0812-2660-9314</strong>
+                            📍 Ruang TEFA (SMKN 5 Surakarta) · 📱 WhatsApp: <strong>0812-2660-9314</strong>
                         </p>
                     </div>
                 </div>
